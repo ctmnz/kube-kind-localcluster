@@ -16,11 +16,9 @@ spec:
     spec:
       containers:
       - name: daniel
-        image: hashicorp/http-echo:0.2.3
-        args:
-        - "-text='This is the text from the application'"
+        image: ctmnz/simple-app
         ports:
-        - containerPort: 5678
+        - containerPort: 5000
 ---
 kind: Service
 apiVersion: v1
@@ -30,7 +28,7 @@ spec:
   selector:
     app: daniel-app-label
   ports:
-    - port: 5678
+    - port: 5000
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -41,10 +39,10 @@ spec:
   - http:
       paths:
       - pathType: Prefix
-        path: "/daniel"
+        path: "/"
         backend:
           service:
             name: daniel-service
             port:
-              number: 5678
+              number: 5000
 ---
