@@ -1,0 +1,4 @@
+
+
+To build the image for amd64 platform:
+docker buildx build --platform linux/amd64 -t simpleapp:latest .

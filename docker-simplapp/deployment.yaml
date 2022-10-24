@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simpleapp-deployment
+spec:
+  selector:
+    matchLabels:
+      app: simpleapp
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: simpleapp
+    spec:
+      containers:
+      - name: simpleapp
+        image: 128230169866.dkr.ecr.eu-west-2.amazonaws.com/simpleapp:latest
+        ports:
+          - containerPort: 5000
+          - containerPort: 8888
+
